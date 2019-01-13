@@ -1,13 +1,10 @@
 window.onload = function(){
-	let slider = new Slider({
-		container: 'container',
-		item: 1
-	});
+	
 }
 class Slider{
 	constructor(options){
 		let defaultOptions = {
-			container: 'slider',
+			wrapper: 'slider',
 			item: 'slider__item',
 			prev: 'slider__control-left',
 			next: 'slider__control-right',
