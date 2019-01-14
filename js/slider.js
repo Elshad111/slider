@@ -18,6 +18,20 @@ class Slider{
 	}
 }
 
+Slider.prototype.nextSlide = function(options, i){
+	let next = document.querySelector(this.next);
+	let items = document.querySelectorAll(this.items);
+	let wrapper = document.querySelector(this.wrapper);
+	next.addEventListener('click', function(){
+		items[i].classList.remove('show');
+		i++;
+		if(i > items.length - 1){
+			i = 0;
+		}
+		items[i].classList.add('show');
+	});
+}
+
 const slider = new Slider({
 	wrapper: '.slider__wrapper',
 	items: '.slider__item',
