@@ -45,11 +45,49 @@ Slider.prototype.prevSlide = function(prev, items, i){
 }
 
 class Carousel extends Slider{
-	constructor(options){
+	constructor(options, container){
 		super(options);
+		this.counter = 0;
+		this.container = container;
 	}
-	carouselInit();
+	carouselInit(){
+		let next = document.querySelector(this.wrapper + " " + this.next);
+		console.log(next);
+		let items = document.querySelectorAll(this.wrapper + " " + this.items);
+		let prev = document.querySelector(this.wrapper + " " + this.prev);
+		let container = document.querySelector(this.container);
+		let itemWidth = items[0].offsetWidth;
+		let containerWidth = this.getWidth(items);
+		container.style.width = containerWidth + "px";
+		this.nextCarousel(next, container, this.counter, itemWidth, containerWidth);
+	}
 }
+
+Carousel.prototype.getWidth = function(items){
+	let size = 0;
+	for(let i = 0; i < items.length; i++){
+		size += items[i].offsetWidth;
+	}
+	return size;
+}
+
+Carousel.prototype.nextCarousel = function(next, container, counter, itemWidth, containerWidth){
+	next.addEventListener('click', function(){
+		counter -= itemWidth;
+		if(counter <= -containerWidth){
+			counter = 0;
+		}
+		container.style.transform = 'translateX('+ counter +'px)';
+	});
+}
+
+const carousel = new Carousel({
+	wrapper: '.second',
+	items: '.slide-carousel',
+	prev: '.slider__control-left',
+	next: '.slider__control-right',
+}, '.slider__carousel');
+carousel.carouselInit();
 
 const slider = new Slider({
 	wrapper: '.slider__wrapper',

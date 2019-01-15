@@ -85,11 +85,13 @@ body{
 .slider__carousel{
     position: relative;
     overflow: hidden;
+    transition: transform 1s ease;
+    -webkit-transition: transform 1s ease-out;
 }
 .slide-carousel{
     float: left;
     line-height: 0;
-    transition: opacity 1s ease;
-    -webkit-transition: opacity 1s ease-out;
+    max-width: 700px;
+    height: 100%;
     opacity: 1;
 }
