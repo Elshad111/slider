@@ -44,6 +44,13 @@ Slider.prototype.prevSlide = function(prev, items, i){
 	});
 }
 
+class Carousel extends Slider{
+	constructor(options){
+		super(options);
+	}
+	carouselInit();
+}
+
 const slider = new Slider({
 	wrapper: '.slider__wrapper',
 	items: '.slider__item',
