@@ -60,6 +60,7 @@ class Carousel extends Slider{
 		let containerWidth = this.getWidth(items);
 		container.style.width = containerWidth + "px";
 		this.nextCarousel(next, container, this.counter, itemWidth, containerWidth);
+		this.prevCarousel(prev, container, this.counter, itemWidth, containerWidth);
 	}
 }
 
@@ -71,11 +72,23 @@ Carousel.prototype.getWidth = function(items){
 	return size;
 }
 
+
+
 Carousel.prototype.nextCarousel = function(next, container, counter, itemWidth, containerWidth){
 	next.addEventListener('click', function(){
 		counter -= itemWidth;
 		if(counter <= -containerWidth){
 			counter = 0;
+		}
+		container.style.transform = 'translateX('+ counter +'px)';
+	});
+}
+
+Carousel.prototype.prevCarousel = function(prev, container, counter, itemWidth, containerWidth){
+	prev.addEventListener('click', function(){
+		counter += itemWidth;
+		if(counter > 0){
+			counter = -containerWidth;
 		}
 		container.style.transform = 'translateX('+ counter +'px)';
 	});
