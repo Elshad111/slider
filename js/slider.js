@@ -14,14 +14,15 @@ class Slider{
 		}
 	}
 	sliderInit(){
-		this.nextSlide(this.options, this.i);
-		this.prevSlide(this.options, this.i);
+		let next = document.querySelector(this.wrapper + " " + this.next);
+		let items = document.querySelectorAll(this.wrapper + " " + this.items);
+		let prev = document.querySelector(this. wrapper + " " + this.prev);
+		this.prevSlide(next, items, this.i);
+		this.nextSlide(prev, items, this.i);		
 	}
 }
 
-Slider.prototype.nextSlide = function(options, i){
-	let next = document.querySelector(this.next);
-	let items = document.querySelectorAll(this.items);
+Slider.prototype.nextSlide = function(next, items, i){
 	next.addEventListener('click', function(){
 		items[i].classList.remove('show');
 		i++;
@@ -32,9 +33,7 @@ Slider.prototype.nextSlide = function(options, i){
 	});
 }
 
-Slider.prototype.prevSlide = function(options, i){
-	let prev = document.querySelector(this.prev);
-	let items = document.querySelectorAll(this.items);
+Slider.prototype.prevSlide = function(prev, items, i){
 	prev.addEventListener('click', function(){
 		items[i].classList.remove('show');
 		i--;
