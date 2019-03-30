@@ -7,6 +7,9 @@ export default class Slider{
 		this.next.addEventListener('click', () => {
 			this.nextSlide();
 		});
+		this.prev.addEventListener('click', () => {
+			this.prevSlide();
+		});
 	}
 
 	nextSlide() {
@@ -14,6 +17,15 @@ export default class Slider{
 		this._index++;
 		if(this._index > this.items.length - 1){
 			this._index = 0;
+		}
+		this.items[this._index].classList.add('show');
+	}
+
+	prevSlide() {
+		this.items[this._index].classList.remove('show');
+		this._index--;
+		if(this._index < 0){
+			this._index = this.items.length - 1;
 		}
 		this.items[this._index].classList.add('show');
 	}
