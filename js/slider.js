@@ -1,5 +1,5 @@
 export default class Slider{
-	constructor(obj = {wrapper : '.slider__wrapper', items : '.slider__item', prev : '.slider__control-left', next : '.slider__control-right'}){
+	constructor(obj = {wrapper : '.slider__wrapper', items : '.slider__item', prev : '.slider__control-left', next : '.slider__control-right', auto : false, transition : null}){
 		this.items = document.querySelectorAll(`${obj.wrapper} ${obj.items}`);
 		this.prev = document.querySelector(`${obj.wrapper} ${obj.prev}`);
 		this.next = document.querySelector(`${obj.wrapper} ${obj.next}`);
@@ -10,6 +10,11 @@ export default class Slider{
 		this.prev.addEventListener('click', () => {
 			this.prevSlide();
 		}); 
+		if(obj.auto){
+			setInterval(() => {
+				this.nextSlide();
+			}, obj.transition);
+		}
 	}
 
 	nextSlide() {
@@ -29,5 +34,5 @@ export default class Slider{
 		}
 		this.items[this._count].classList.add('show');
 	}
-	
+
 }
