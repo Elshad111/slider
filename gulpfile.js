@@ -35,12 +35,13 @@ gulp.task('styles', () => {
 					level: 2
 				}))
 				.pipe(gulp.dest('build/css'))
-				.pipe(browserSync.stream());;
+				.pipe(browserSync.stream());
 });
 
 gulp.task('copy-html', () => {
 	return gulp.src(copyFile)
-				.pipe(gulp.dest('build')).pipe(browserSync.stream());;
+				.pipe(gulp.dest('build'))
+				.pipe(browserSync.stream());
 });
 
 gulp.task('script', () => {
@@ -48,7 +49,8 @@ gulp.task('script', () => {
 				.pipe(sourcemaps.init())
 				.pipe(rollup({}, 'iife'))
 				.pipe(sourcemaps.write())
-				.pipe(gulp.dest('build/js')).pipe(browserSync.stream());;
+				.pipe(gulp.dest('build/js'))
+				.pipe(browserSync.stream());
 });
 
 gulp.task('clear', function (done) {
@@ -58,7 +60,8 @@ gulp.task('clear', function (done) {
 gulp.task('imagemin', () => {
 	return gulp.src('img/*')
 				.pipe(imagemin())
-				.pipe(gulp.dest('build/img')).pipe(browserSync.stream());;
+				.pipe(gulp.dest('build/img'))
+				.pipe(browserSync.stream());
 });
 
 gulp.task('clean', () => {
