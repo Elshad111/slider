@@ -1,10 +1,20 @@
 export default class Slider{
-	constructor(wrapper = '.slider__wrapper', items = '.slider__item', prev = '.slider__control-left', next = '.slider__control-right'){
-		this.items = document.querySelector(`${this.wrapper} ${this.items}`);
-		this.prev = document.querySelector(`${this.wrapper} ${this.prev}`);
-		this.next = document.querySelector(`${this.wrapper} ${this.next}`);
-		this._index = 0;
+	constructor(obj = {wrapper : '.slider__wrapper', items : '.slider__item', prev : '.slider__control-left', next : '.slider__control-right'}){
+		this.items = document.querySelectorAll(`${obj.wrapper} ${obj.items}`);
+		this.prev = document.querySelector(`${obj.wrapper} ${obj.prev}`);
+		this.next = document.querySelector(`${obj.wrapper} ${obj.next}`);
+		this._index = 0;		
+		this.next.addEventListener('click', () => {
+			this.nextSlide();
+		});
 	}
 
-
+	nextSlide() {
+		this.items[this._index].classList.remove('show');
+		this._index++;
+		if(this._index > this.items.length - 1){
+			this._index = 0;
+		}
+		this.items[this._index].classList.add('show');
+	}
 }
